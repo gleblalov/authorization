@@ -1,0 +1,44 @@
+<form class="form" [formGroup]="form" (ngSubmit)="login()" *ngIf="!token, else authTrue">
+    <h2>Authorization</h2>
+
+    <div class="alert alert-danger" role="alert" *ngIf="alertErrorMessage">
+        {{alertErrorMessage}}
+    </div>
+
+    <div class="form-group">
+        <label for="formGroupExampleInput">Email:</label>
+        <input type="email" class="form-control validation" id="formGroupExampleInput" placeholder="Email..." formControlName="email">
+        <div *ngIf="form.get('email').touched && form.get('email').invalid">
+            <small *ngIf="form.get('email').errors.required">
+            The field can`t be empty
+            </small>
+    
+            <small *ngIf="form.get('email').errors.pattern">
+            Enter the correct email
+            </small>
+        </div>  
+    </div>
+
+    <div class="form-group">
+        <label for="formGroupExampleInput2">Password:</label>
+        <input type="password" class="form-control validation" id="formGroupExampleInput2" placeholder="Password..." formControlName="password">
+        <div *ngIf="form.get('password').touched && form.get('password').invalid">
+            <small *ngIf="form.get('password').errors.required">
+                The field can`t be empty
+            </small>
+
+            <small *ngIf="form.get('password').errors.minlength">
+                The password must be more than five characters
+            </small>
+        </div> 
+    </div>
+
+    <button type="submit" class="btn btn-secondary" [disabled]="form.invalid" >Login</button>
+</form>
+
+<ng-template #authTrue>
+    <div class="form">
+        <h2>You have successfully logged in</h2>
+        <button type="button" class="btn btn-dark" (click)="logout()">Logout</button>
+    </div>
+</ng-template>
