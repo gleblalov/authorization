@@ -8,11 +8,19 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`
+  url: string = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`
 
   constructor(private http: HttpClient) { }
 
+  get token(): string{
+    return localStorage.getItem('token')
+  }
+
   login(user): Observable<any>{
     return this.http.post(this.url, user)
+  }
+
+  logout(): void{
+    localStorage.clear()
   }
 }

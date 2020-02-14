@@ -14,15 +14,11 @@ export class AuthFormComponent implements OnInit {
   form: FormGroup
   alertErrorMessage: string
 
-  constructor(private authService: AuthService) {
+  constructor(public authService: AuthService) {
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.pattern(/^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/)]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     })
-  }
-
-  get token(){
-    return localStorage.getItem('token')
   }
 
   ngOnInit() {
@@ -39,12 +35,7 @@ export class AuthFormComponent implements OnInit {
       this.alertErrorMessage = ''
       this.form.reset()
     }, err => {
-      console.log(err.error.error.message)
       this.alertErrorMessage = err.error.error.message
     })
-  }
-
-  logout(){
-    localStorage.clear()
   }
 }
