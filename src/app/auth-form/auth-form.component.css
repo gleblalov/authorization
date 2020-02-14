@@ -19,7 +19,19 @@ small{
 }
 
 .btn{
+    width: 30%;
+    margin-top: 15px;
     margin-left: 50%;
     transform: translateX(-50%);
-    width: 30%;
 }
+
+.googleIcon{
+    font-size: 30px;
+    transition: color .2s linear;
+    cursor: pointer;
+}
+
+.googleIcon:hover{
+    color:rgb(255, 46, 46)
+}
+

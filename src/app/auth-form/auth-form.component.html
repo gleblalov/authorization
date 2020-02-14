@@ -1,4 +1,4 @@
-<form class="form" [formGroup]="form" (ngSubmit)="login()" *ngIf="!authService.token, else authTrue">
+<form class="form" [formGroup]="form" (ngSubmit)="login()">
     <h2>Authorization</h2>
 
     <div class="alert alert-danger" role="alert" *ngIf="alertErrorMessage">
@@ -34,11 +34,12 @@
     </div>
 
     <button type="submit" class="btn btn-secondary" [disabled]="form.invalid" >Login</button>
+    <button type="button" class="btn btn-danger" (click)="loginSocial('google')">Google</button>      
 </form>
 
-<ng-template #authTrue>
+<!-- <ng-template #authTrue>
     <div class="form">
         <h2>You have successfully logged in</h2>
         <button type="button" class="btn btn-dark" (click)="authService.logout()">Logout</button>
     </div>
-</ng-template>
+</ng-template> -->
